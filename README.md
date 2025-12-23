@@ -28,6 +28,18 @@ docker-compose up --build
 - O acesso ao banco de dados pode ser feito via qualquer cliente MySQL usando as credenciais do arquivo `.env`.
 - O projeto está pronto para ser executado apenas via Docker, facilitando o uso em qualquer ambiente.
 
+src/
+├── core/                         # O "Coração" do sistema (Domínio)
+│   ├── entities/                 # Classes de negócio (User, Account, Invoice)
+│   ├── use-cases/                # Ações do sistema (CreateTransaction, MonthlyClosing)
+│   └── ports/                    # Interfaces (Contratos para Repositórios e Serviços)
+├── infrastructure/               # Implementações técnicas (Adapters)
+│   ├── adapters/
+│   │   ├── db/                   # Prisma, TypeORM ou SQL puro
+│   │   └── web/                  # Fastify ou Express (Controllers)
+│   └── config/                   # Variáveis de ambiente e DI (Injeção de Dependência)
+└── main.ts                       # Entry point (Bootstrap)
+
 ---
 
 Para dúvidas ou sugestões, fique à vontade para abrir uma issue ou contribuir!
