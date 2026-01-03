@@ -1,12 +1,21 @@
-import { Controller, Get, Post, Put, Delete, Body, Param } from '@nestjs/common';
+import {
+  Get,
+  Put,
+  Body,
+  Post,
+  Param,
+  Delete,
+  Controller
+} from '@nestjs/common';
+import {
+  GetTransactionDto,
+  CreateTransactionDto,
+  UpdateTransactionDto,
+  DeleteTransactionDto
+} from './dto/transaction.dto';
 
 @Controller('transactions')
 export class TransactionController {
-  @Post()
-  create(@Body() data: any) {
-    return { message: 'Lançamento criado', data };
-  }
-
   @Get()
   findAll() {
     return { message: 'Listar lançamentos' };
@@ -14,16 +23,21 @@ export class TransactionController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return { message: `Buscar lançamento ${id}` };
+    return { message: `Buscar lançamento ${id}`, GetTransactionDto };
+  }
+
+  @Post()
+  create(@Body() data: CreateTransactionDto) {
+    return { message: 'Lançamento criado', data };
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() data: any) {
+  update(@Param('id') id: string, @Body() data: UpdateTransactionDto) {
     return { message: `Atualizar lançamento ${id}`, data };
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return { message: `Remover lançamento ${id}` };
+    return { message: `Remover lançamento ${id}`, DeleteTransactionDto };
   }
 }

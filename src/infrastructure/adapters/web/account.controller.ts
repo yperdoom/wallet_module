@@ -1,12 +1,21 @@
-import { Controller, Get, Post, Put, Delete, Body, Param } from '@nestjs/common';
+import {
+  Get,
+  Put,
+  Body,
+  Post,
+  Param,
+  Delete,
+  Controller
+} from '@nestjs/common';
+import {
+  GetAccountDto,
+  CreateAccountDto,
+  UpdateAccountDto,
+  DeleteAccountDto
+} from './dto/account.dto';
 
 @Controller('accounts')
 export class AccountController {
-  @Post()
-  create(@Body() data: any) {
-    return { message: 'Conta criada', data };
-  }
-
   @Get()
   findAll() {
     return { message: 'Listar contas' };
@@ -14,16 +23,21 @@ export class AccountController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return { message: `Buscar conta ${id}` };
+    return { message: `Buscar conta ${id}`, GetAccountDto };
+  }
+
+  @Post()
+  create(@Body() data: CreateAccountDto) {
+    return { message: 'Conta criada', data };
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() data: any) {
+  update(@Param('id') id: string, @Body() data: UpdateAccountDto) {
     return { message: `Atualizar conta ${id}`, data };
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return { message: `Remover conta ${id}` };
+    return { message: `Remover conta ${id}`, DeleteAccountDto };
   }
 }
