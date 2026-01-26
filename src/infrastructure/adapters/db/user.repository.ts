@@ -12,4 +12,20 @@ export class UserRepository implements UserRepositoryPort {
   async findByEmail(email: string): Promise<User | null> {
     return this.users.find(u => u.email === email) || null;
   }
+
+  async findAll(): Promise<User[]> {
+    return this.users;
+  }
+
+  async findById(id: number): Promise<User | null> {
+    return this.users.find(u => u.id === id) || null;
+  }
+
+  async update(id: number, user: Partial<User>): Promise<User | null> {
+    return this.update(id, user);
+  }
+
+  async delete(id: number): Promise<void> {
+    this.users = this.users.filter(u => u.id !== id)
+  }
 }

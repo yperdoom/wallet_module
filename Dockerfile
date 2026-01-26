@@ -3,11 +3,11 @@ FROM node:22
 WORKDIR /usr/src/app
 
 COPY package*.json ./
-RUN yarn install
+RUN npm install
 
 COPY . .
 
-RUN yarn build
+RUN npm run build
 
 EXPOSE 3000
-CMD ["yarn", "start"]
+CMD ["node", "dist/main.js"]

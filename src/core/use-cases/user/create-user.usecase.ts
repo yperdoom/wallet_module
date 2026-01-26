@@ -1,6 +1,5 @@
-import { nanoid } from 'nanoid';
-import { User } from '../entities/user.entity';
-import { UserRepositoryPort } from '../ports/user.repository.port';
+import { User } from '../../entities/user.entity';
+import { UserRepositoryPort } from '../../ports/user.repository.port';
 
 export class CreateUserUseCase {
   constructor(private readonly userRepository: UserRepositoryPort) { }

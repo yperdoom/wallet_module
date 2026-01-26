@@ -14,7 +14,7 @@ services:
       - db_data:/var/lib/mysql
   api:
     build: .
-    command: yarn start
+    command: npm start
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
